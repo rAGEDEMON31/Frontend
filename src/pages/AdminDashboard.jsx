@@ -20,8 +20,8 @@ const AdminDashboard = () => {
 
   const fetchApprovals = async () => {
     const config = { username: user.username };
-    const leave = await axios.get(`http://localhost:8081/api/manager/leaveApprovals/${user.username}`);
-    const time = await axios.get(`http://localhost:8081/api/manager/timeApprovals/${user.username}`);
+    const leave = await axios.get(`https://backend-nv1r.onrender.com/api/manager/leaveApprovals/${user.username}`);
+    const time = await axios.get(`https://backend-nv1r.onrender.com/api/manager/timeApprovals/${user.username}`);
     setLeaveApprovals(Object.entries(leave.data));
     setTimeApprovals(Object.entries(time.data));
     console.log("Team :", team);
@@ -31,7 +31,7 @@ const AdminDashboard = () => {
   };
 
   const fetchTeam = async () => {
-    const res = await axios.get(`http://localhost:8081/api/manager/myTeam/${user.username}`);
+    const res = await axios.get(`https://backend-nv1r.onrender.com/api/manager/myTeam/${user.username}`);
     console.log(res);
     setTeam(res.data)
   };
@@ -39,12 +39,12 @@ const AdminDashboard = () => {
   const approveLeave = async (id) => {
     console.log("Approve for ", id);
 
-    await axios.put('http://localhost:8081/api/manager/updateLeaveApproval', { attendanceId: id });
+    await axios.put('https://backend-nv1r.onrender.com/api/manager/updateLeaveApproval', { attendanceId: id });
     fetchApprovals(); // Refresh data
   };
 
   const approveTime = async (id) => {
-    await axios.put('http://localhost:8081/api/manager/updatedtimeApproval', { attendanceId: id });
+    await axios.put('https://backend-nv1r.onrender.com/api/manager/updatedtimeApproval', { attendanceId: id });
     fetchApprovals(); // Refresh data
   };
 

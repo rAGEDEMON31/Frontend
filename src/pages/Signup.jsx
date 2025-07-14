@@ -30,7 +30,7 @@ const Signup = () => {
     })
     console.log(newUser);
     try {
-      await axios.post("https://frontend-production-9cd2.up.railway.app/api/employee/addNewEmployee",newUser);
+      await axios.post("https://backend-nv1r.onrender.com/api/employee/addNewEmployee",newUser);
       toast.success("Employee Registered successfully")
       navigate("/login")
     } catch (error) {
