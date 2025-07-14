@@ -15,7 +15,7 @@ const navigate = useNavigate();
     const formData = new FormData(event.target);
     const formValues = Object.fromEntries(formData.entries());
     console.log(formValues);
-    await axios.post("http://localhost:8081/api/employee/login",formValues).then(response=>{
+    await axios.post("https://frontend-production-9cd2.up.railway.app/api/employee/login",formValues).then(response=>{
       console.log(response.data);
       try {
         setUser(response.data)
