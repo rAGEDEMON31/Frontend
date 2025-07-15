@@ -15,7 +15,7 @@ const Dashboard = () => {
   })
   const checkIn = async (event) => {
     event.preventDefault()
-    await axios.post("http://localhost:8081/api/employee/checkIn", { employeeid: user._id }).then((response) => {
+    await axios.post("https://backend-nv1r.onrender.com/api/employee/checkIn", { employeeid: user._id }).then((response) => {
       setCheckIn(true)
       console.log(checkedIn, "  ", checkedOut);
 
@@ -23,7 +23,7 @@ const Dashboard = () => {
   }
   const checkOut = async (event) => {
     event.preventDefault()
-    await axios.post("http://localhost:8081/api/employee/checkOut", { employeeid: user._id }).then((response) => {
+    await axios.post("https://backend-nv1r.onrender.com/api/employee/checkOut", { employeeid: user._id }).then((response) => {
       setCheckOut(true)
       console.log(response);
     })

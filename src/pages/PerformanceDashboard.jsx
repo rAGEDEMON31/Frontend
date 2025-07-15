@@ -33,11 +33,11 @@ const PerformanceDashboard = () => {
   useEffect(() => {
     // Fetch weekly attendance
     axios
-      .get(`http://localhost:8081/api/employee/attendance/${user._id}/${weekStart}`)
+      .get(`https://backend-nv1r.onrender.com/api/employee/attendance/${user._id}/${weekStart}`)
       .then(res => setAttendance(res.data || []));
     // Fetch LOP from salary/team data
     axios
-      .get(`http://localhost:8081/api/manager/myTeam/${user.username}`)
+      .get(`https://backend-nv1r.onrender.com/api/manager/myTeam/${user.username}`)
       .then(res => {
         const me = res.data.find(emp => emp._id === user._id);
         setLop(me?.lop || 0);

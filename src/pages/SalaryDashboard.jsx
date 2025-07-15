@@ -9,7 +9,7 @@ const SalaryDashboard = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {const res = await axios.get(`http://localhost:8081/api/manager/myTeam/${user.username}`);
+      try {const res = await axios.get(`https://backend-nv1r.onrender.com/api/manager/myTeam/${user.username}`);
 
     console.log(res);
     setTeamData(res.data)

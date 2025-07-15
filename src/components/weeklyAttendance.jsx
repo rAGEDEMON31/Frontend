@@ -36,7 +36,7 @@ const WeeklyAttendance = () => {
     });
     console.log(weekStart);
     
-    axios.get(`http://localhost:8081/api/employee/attendance/${user._id}/${weekStart}`)
+    axios.get(`https://backend-nv1r.onrender.com/api/employee/attendance/${user._id}/${weekStart}`)
       .then(response => {
         const attendanceData = response.data;
         console.log(attendanceData);
@@ -83,7 +83,7 @@ const WeeklyAttendance = () => {
       }));
       let dateTemp = new Date(currDate);
       console.log(`Saving ${day}:`, savedDays);
-      await axios.post('http://localhost:8081/api/employee/attendance',{
+      await axios.post('https://backend-nv1r.onrender.com/api/employee/attendance',{
       employeeid: user._id,
       checkedIn: dateTemp.setHours(weekData[day].checkedIn.split(":")[0], weekData[day].checkedIn.split(":")[1], 0, 0),
       checkedOut: dateTemp.setHours(weekData[day].checkedOut.split(":")[0], weekData[day].checkedOut.split(":")[1], 0, 0),
@@ -114,7 +114,7 @@ const WeeklyAttendance = () => {
     }
     // Submit the week data
     console.log("Submitting week data:", weekData, weekStart);
-    await axios.put('http://localhost:8081/api/employee/submit',{
+    await axios.put('https://backend-nv1r.onrender.com/api/employee/submit',{
       employeeid: user._id,
       date:weekStart
     });
