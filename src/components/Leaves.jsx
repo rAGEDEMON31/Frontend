@@ -21,12 +21,12 @@ const Leaves = () => {
 
     const submitLeaves=async()=>{
         console.log(date);
-        await axios.post("http://localhost:8081/api/employee/editLeaves",
+        await axios.post("https://backend-nv1r.onrender.com/api/employee/editLeaves",
             {empId:user._id, 
             startDate:date[0],
             endDate:date[1]}).then(async()=>{
                 setDates([]);
-                const updatedUser = await axios.get(`http://localhost:8081/api/employee/getEmployee/${user.username}`)
+                const updatedUser = await axios.get(`https://backend-nv1r.onrender.com/api/employee/getEmployee/${user.username}`)
                 setUser(updatedUser);
             })
         
