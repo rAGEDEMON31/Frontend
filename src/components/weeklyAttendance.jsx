@@ -44,8 +44,8 @@ const WeeklyAttendance = () => {
           attendanceData.forEach(entry => {
             const day = new Date(entry.date).toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
             if (data[day]) {
-              data[day].checkedIn = entry.checkInTime ? new Date(entry.checkInTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
-              data[day].checkedOut = entry.checkOutTime ? new Date(entry.checkOutTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+              data[day].checkedIn = entry.checkInTime ? new Date(entry.checkInTime).toLocaleTimeString([], {hourCycle:'h23', hour: '2-digit', minute: '2-digit' }) : '';
+              data[day].checkedOut = entry.checkOutTime ? new Date(entry.checkOutTime).toLocaleTimeString([], { hourCycle:'h23',hour: '2-digit', minute: '2-digit' }) : '';
               data[day].date = entry.date;
               setSavedDays(prev => ({ ...prev, [day]: true }));
             }
