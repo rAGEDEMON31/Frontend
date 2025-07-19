@@ -2,27 +2,28 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Navbar3 from '../components/Navbar3';
 import { useUser } from '../context/UserContext';
+import { AuroraBackground } from '../components/ui/aurora-background';
 
 const SalaryDashboard = () => {
   const [teamData, setTeamData] = useState([]);
-  const { user } = useUser(); // Ensure this is properly set on login
+  const { user } = useUser();
 
   useEffect(() => {
     const fetchData = async () => {
-      try {const res = await axios.get(`https://backend-nv1r.onrender.com/api/manager/myTeam/${user.username}`);
-
-    console.log(res);
-    setTeamData(res.data)
-  }catch (error) {
-        console.error("Error fetching team data:", error);}
+      try {
+        const res = await axios.get(`https://backend-nv1r.onrender.com/api/manager/myTeam/${user.username}`);
+        setTeamData(res.data)
+      } catch (error) {
+        console.error("Error fetching team data:", error);
+      }
     }
-    fetchData(); 
+    fetchData();
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-sky-100 to-white">
+    <AuroraBackground>
       <Navbar3 />
-      <div className="p-8 max-w-6xl mx-auto space-y-8">
+      <div className="p-8 max-w-6xl mx-auto space-y-8 pt-20">
         <h1 className="text-3xl font-extrabold text-blue-800 text-center mb-6 tracking-tight">
           Salary Dashboard
         </h1>
@@ -84,7 +85,7 @@ const SalaryDashboard = () => {
           </table>
         </div>
       </div>
-    </div>
+    </AuroraBackground>
   );
 };
 

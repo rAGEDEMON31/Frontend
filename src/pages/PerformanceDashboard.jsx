@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Navbar3 from '../components/Navbar3';
 import { useUser } from '../context/UserContext';
+import { AuroraBackground } from '../components/ui/aurora-background';
 
 const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
@@ -73,9 +74,9 @@ const PerformanceDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-sky-100 to-white">
+    <AuroraBackground>
       <Navbar3 />
-      <div className="p-8 max-w-5xl mx-auto space-y-8">
+      <div className="p-8 max-w-5xl mx-auto space-y-8 pt-20">
         <h1 className="text-3xl font-extrabold text-blue-800 text-center mb-6 tracking-tight">
           Performance Dashboard
         </h1>
@@ -130,7 +131,7 @@ const PerformanceDashboard = () => {
           </table>
         </div>
       </div>
-    </div>
+    </AuroraBackground>
   );
 };
 

@@ -1,27 +1,57 @@
 import React from "react";
-import { useUser } from "../context/UserContext"; // ✅ Make sure path is correct
-import Navbar3 from "../components/Navbar3"; // ✅ Optional, use your navbar
+import { useUser } from "../context/UserContext";
+import Navbar3 from "../components/Navbar3";
+import { AuroraBackground } from "../components/ui/aurora-background";
 
 const Myinfo = () => {
   const { user } = useUser();
-  console.log("User object:", user);
-  
+
   if (!user) {
-    return <p className="text-center mt-10">User not found. Please log in.</p>;
+    return (
+      <AuroraBackground>
+        <Navbar3 />
+        <div className="flex items-center justify-center min-h-screen pt-20">
+          <div className="bg-[#181c2f]/90 backdrop-blur-xl rounded-2xl shadow-2xl px-8 py-10 max-w-md w-full text-center border border-blue-900/10">
+            <p className="text-lg text-gray-200">User not found. Please log in.</p>
+          </div>
+        </div>
+      </AuroraBackground>
+    );
   }
 
   return (
-    <div className="min-h-screen">
+    <AuroraBackground>
       <Navbar3 />
-      <div className="max-w-xl mx-auto mt-10 bg-base-300 p-6 rounded-lg shadow-md">
-
-        <h2 className="text-2xl font-bold mb-4 text-center">My Information</h2>
-        <p><strong>Name:</strong> {user?.name}</p>
-        <p><strong>Email:</strong> {user?.email}</p>
-        <p><strong>Role:</strong> {user?.roles||"N/A"}</p>
-        <p><strong>ID:</strong> {user?._id}</p>
+      <div className="flex items-center justify-center min-h-screen pt-20">
+        <div className="bg-[#181c2f]/90 backdrop-blur-xl rounded-2xl shadow-2xl px-8 py-10 max-w-md w-full border border-blue-900/10">
+          <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-500 to-blue-800 mb-6 text-center drop-shadow-lg">
+            My Information
+          </h2>
+          <div className="space-y-4 text-base">
+            <div className="flex justify-between text-gray-200">
+              <span className="font-semibold">Name:</span>
+              <span>{user?.name}</span>
+            </div>
+            <div className="flex justify-between text-gray-200">
+              <span className="font-semibold">Username:</span>
+              <span>{user?.username}</span>
+            </div>
+            <div className="flex justify-between text-gray-200">
+              <span className="font-semibold">Email:</span>
+              <span>{user?.email}</span>
+            </div>
+            <div className="flex justify-between text-gray-200">
+              <span className="font-semibold">Role:</span>
+              <span>{Array.isArray(user?.roles) ? user.roles.join(", ") : user?.roles || "N/A"}</span>
+            </div>
+            <div className="flex justify-between text-gray-200">
+              <span className="font-semibold">ID:</span>
+              <span>{user?._id}</span>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </AuroraBackground>
   );
 };
 
