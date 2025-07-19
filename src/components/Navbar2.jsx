@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 
 const Navbar2 = () => {
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="fixed top-0 left-0 w-full z-20 bg-[#181c2f]/70 backdrop-blur-md border-b border-blue-900/20 shadow-sm">
-      <div className="mx-auto max-w-6xl px-6 py-3">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 py-3">
         <div className="flex items-center justify-between">
           <h1
             onClick={() => navigate('/')}
@@ -13,7 +15,18 @@ const Navbar2 = () => {
           >
             EMS
           </h1>
-          <div className="flex gap-2">
+          {/* Hamburger for mobile */}
+          <button
+            className="sm:hidden flex flex-col justify-center items-center w-10 h-10"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={`block h-0.5 w-6 bg-white mb-1 transition-all ${menuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+            <span className={`block h-0.5 w-6 bg-white mb-1 transition-all ${menuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`block h-0.5 w-6 bg-white transition-all ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+          </button>
+          {/* Desktop menu */}
+          <div className="hidden sm:flex gap-2">
             <Link to="/Myinfo" className="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow transition">
               My Info
             </Link>
@@ -25,6 +38,32 @@ const Navbar2 = () => {
             </Link>
           </div>
         </div>
+        {/* Mobile menu */}
+        {menuOpen && (
+          <div className="flex flex-col gap-2 mt-3 sm:hidden animate-fade-in-down">
+            <Link
+              to="/Myinfo"
+              className="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow transition"
+              onClick={() => setMenuOpen(false)}
+            >
+              My Info
+            </Link>
+            <Link
+              to="/weekly"
+              className="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow transition"
+              onClick={() => setMenuOpen(false)}
+            >
+              Check In
+            </Link>
+            <Link
+              to="/"
+              className="px-5 py-2 rounded-lg bg-gray-700 hover:bg-gray-800 text-white font-semibold shadow transition"
+              onClick={() => setMenuOpen(false)}
+            >
+              Logout
+            </Link>
+          </div>
+        )}
       </div>
     </header>
   )
